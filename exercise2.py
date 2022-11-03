@@ -14,6 +14,11 @@ class Point2D:
     def y(self) -> float:
         return self._coordinates[1]
 
+    def __iadd__(self, other):
+        if not isinstance(other, Vector):
+            raise NotImplementedError("Can only add Vectors to Points in place")
+        return Point2D(self.x + other[0], self.y + other[1])
+
 
 def test_point_construction() -> None:
     point = Point2D(1.0, 42.0)
