@@ -1,6 +1,15 @@
+from numbers import Number
+
 from exercise1 import Vector
 from exercise2 import Point2D
 
+
+def num_in_range(num: Number, left_fence: Number, right_fence: Number) -> bool:
+    """
+    Check if the given number is within the given range.
+    Both fences are inclusive. E.g if num == left_fence, true is returned.
+    """
+    return num >= left_fence and num <= right_fence
 
 class Rectangle:
     def __init__(self, lower_left: Point2D, dx: float, dy: float) -> None:
@@ -31,12 +40,11 @@ class Rectangle:
         #         and reuse that here.
         ll_px = point.x - self._lower_left.x
         ll_py = point.y - self._lower_left.y
-        return ll_px >= 0-tolerance and ll_px <= self._dx+tolerance   \
-            and ll_py >= 0-tolerance and ll_py <= self._dy+tolerance
+        return num_in_range(ll_px, 0-tolerance, self._dx+tolerance) and num_in_range(ll_py, 0-tolerance, self._dy+tolerance)
 
     def _is_idx_on_upper_edge(self, i: int) -> bool:
         return i in [2, 3]
-    
+
     def _is_idx_on_right_edge(self, i: int) -> bool:
         return i in [1, 3]
 
