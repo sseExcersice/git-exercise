@@ -18,6 +18,9 @@ class Point2D:
         if not isinstance(other, Vector):
             raise NotImplementedError("Can only add Vectors to Points in place")
         return Point2D(self.x + other[0], self.y + other[1])
+        
+    def __isub__(self, other: Vector) -> Vector:
+        return Point2D(self.x - other[0],  self.y - other[1])
 
 
 def test_point_construction() -> None:
